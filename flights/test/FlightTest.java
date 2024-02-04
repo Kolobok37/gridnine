@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.Test;
 
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
-
 public class FlightTest {
     LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
 

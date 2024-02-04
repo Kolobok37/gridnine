@@ -16,6 +16,7 @@ public class FlightFilter {
                         .allMatch(s -> s.getDepartureDate().isAfter(LocalDateTime.now())))
                 .collect(Collectors.toList());
     }
+
     public static List<Flight> filteringDepartureBeforeArrival(List<Flight> flights) {
         return flights.stream().filter(f -> f.getSegments()
                         .stream()
@@ -25,7 +26,6 @@ public class FlightFilter {
 
     public static List<Flight> filteringTransferLessTwoHours(List<Flight> flights) {
         List<Flight> filteredFlights = new ArrayList<>();
-        boolean marker = true;
         F:
         for (Flight flight : flights) {
             Duration duration = Duration.ZERO;
@@ -35,9 +35,9 @@ public class FlightFilter {
                         .isAfter(segments.get(j + 1).getDepartureDate())) {
                     continue F;
                 }
-                duration=duration.plus(Duration.between(segments.get(j).getArrivalDate(),segments.get(j + 1).getDepartureDate()));
+                duration = duration.plus(Duration.between(segments.get(j).getArrivalDate(), segments.get(j + 1).getDepartureDate()));
             }
-            if (duration.compareTo(Duration.ofHours(2))<1) {
+            if (duration.compareTo(Duration.ofHours(2)) < 1) {
                 filteredFlights.add(flight);
             }
         }
